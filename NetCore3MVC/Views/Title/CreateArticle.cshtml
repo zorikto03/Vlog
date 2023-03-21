@@ -1,0 +1,47 @@
+﻿@model NetCore3MVC.Models.Article;
+@{
+    ViewData["title"] = "Create article page";
+    var user = (User)ViewBag.User;
+}
+<head>
+    <style>
+
+        textarea {
+            width: 100%;
+            height: 800px;
+        }
+
+        textarea::-webkit-scrollbar{
+            width: 0;
+        }
+
+    </style>
+</head>
+<div class="text-center">
+    <h2>Article creator</h2>
+</div>
+<div>
+    <form asp-action="CreateArticle" asp-controller="Title">
+        <div class="form-group">
+            <label asp-for="Categories" >Categories</label>
+            @Html.ListBox("Categories", (List<SelectListItem>) ViewBag.ArticleCategories)
+            <span asp-validation-for="Categories"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Title" >Title</label>
+            <input id="titleInput" type="text" asp-for="Title" placeholder="Title" />
+            <span asp-validation-for="Title"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Content" >Content</label>
+            <textarea name="Content" asp-for="Content" ></textarea>
+            <span asp-validation-for="Content"></span>
+        </div>
+        <div class="form-group invisible">
+            <label asp-for="AuthorId">Author</label>
+            <input type="text" asp-for="AuthorId" value=@user?.Id />
+            <span asp-validation-for="AuthorId"></span>
+        </div>
+        <input type="submit" value="Save" />
+    </form>
+</div>

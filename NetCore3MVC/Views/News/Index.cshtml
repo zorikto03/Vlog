@@ -1,0 +1,41 @@
+﻿@using NetCore3MVC.Services;
+@using System.Security.Claims
+@model IndexViewModel<New>;
+
+@addTagHelper *, NetCore3MVC
+@{
+    var list = Model.Items.ToList();
+    var role = User.Identities.FirstOrDefault().Claims.ToList().FirstOrDefault(x=>x.Type==ClaimsIdentity.DefaultRoleClaimType);
+    ViewData["actions"] = new string[2] { "Home", "Index" };
+    ViewData["controller"] = "News";
+}
+<head>
+    <style>
+        .createNewsBtn {
+            position: center;
+        }
+    </style>
+</head>
+<div class="container px-4">
+    @if(role.Value == "Admin")
+    {
+        <a class="createNewsBtn btn btn-outline-dark" role="button" asp-action="CreateNews" asp-controller="News">Create News</a>
+    }
+    <div class="dropdown">
+        <button class="btn btn-outline-dark dropdown-toggle" type="button" id="displayCountBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Display Count
+        </button>
+        <div class="dropdown-menu" aria-labelledby="displayCountBtn">
+            <a class="dropdown-item" asp-action="Index" asp-controller="News" asp-route-pageSize="1">1</a>
+            <a class="dropdown-item" asp-action="Index" asp-controller="News" asp-route-pageSize="10">10</a>
+            <a class="dropdown-item" asp-action="Index" asp-controller="News" asp-route-pageSize="20">20</a>
+            <a class="dropdown-item" asp-action="Index" asp-controller="News" asp-route-pageSize="30">30</a>
+        </div>
+    </div>
+    <div>
+        @Html.ListNews(list)
+    </div>
+    <br />
+    <page-link page-model="Model.PageViewModel" page-action="Index"></page-link>
+
+</div>

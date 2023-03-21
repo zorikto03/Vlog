@@ -1,0 +1,47 @@
+﻿@using NetCore3MVC.Services;
+@model IndexViewModel<Article>;
+
+@addTagHelper *, NetCore3MVC
+@{
+    ViewData["title"] = "Title Page";
+}
+
+<div class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand">Navigation</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#searchAndCreateBtn" aria-controls="searchAndCreateBtn" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="searchAndCreateBtn">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="btn btn-outline-light nav-link" asp-action="CreateArticle" asp-controller="Title">Create Article</a>
+            </li>
+        </ul>
+        <form method="post" asp-action="SearchArticles" asp-controller="Title" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="search" name="search"/>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button>
+        </form>
+    </div>
+</div>
+<div class="container px-4">
+    <div class="dropdown">
+        <button class="btn btn-dark dropdown-toggle rounded-pill" type="button" id="displayCountBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Display Count
+        </button>
+        <div class="dropdown-menu" aria-labelledby="displayCountBtn">
+            <a class="dropdown-item" asp-action="Index" asp-controller="Title" asp-route-pageSize="1">1</a>
+            <a class="dropdown-item" asp-action="Index" asp-controller="Title" asp-route-pageSize="10">10</a>
+            <a class="dropdown-item" asp-action="Index" asp-controller="Title" asp-route-pageSize="20">20</a>
+            <a class="dropdown-item" asp-action="Index" asp-controller="Title" asp-route-pageSize="30">30</a>
+        </div>
+    </div>
+    <div>
+        @Html.ListArticles(Model.Items.ToList())
+    </div>
+    <br />
+    <page-link page-model="Model.PageViewModel" page-action="Index"></page-link>
+
+</div>
+
+

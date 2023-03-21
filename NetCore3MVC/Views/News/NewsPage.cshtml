@@ -1,0 +1,19 @@
+﻿@using NetCore3MVC.Models;
+@{
+    New news = ViewBag.New;
+    string src = news.FilesPaths?.FirstOrDefault()?.Path != null ? news.FilesPaths[0].Path : "/Resources/oneMore.png";  
+    ViewData["controller"] = "News";
+}
+
+<div>
+    <div class="card bg-dark text-white">
+        <img src="@src"  class="card-img w-100" alt="Card image" />
+        <div class="card-img-overlay">
+            <h5 class="card-title">@news.Title</h5>
+            <small class="card-text">Posted: @news.CreateTimestamp</small>
+        </div>
+    </div>
+    <div class="my-3 p-3 bg-light">
+        <p class="text-dark">@news.Content</p>
+    </div>
+</div>

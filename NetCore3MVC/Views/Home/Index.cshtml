@@ -1,0 +1,56 @@
+﻿@using NetCore3MVC.Services
+@{
+    ViewData["Title"] = "Home Page";
+    List<User> users = (List<User>)ViewData["users"];
+    List<New> news = (List<New>)ViewData["news"];
+}
+<head>
+    <style>
+        .horizontal-scrollable {
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .horizontal-scrollable > .col-md-4 {
+            display: inline-block;
+            float: none;
+        }
+
+        .col-md-4:nth-child(2n+1) {
+            background: gray;
+            color: black;
+        }
+
+        .col-md-4:nth-child(2n+2)
+        {
+            background: black;
+            color: white;
+        }
+        
+        .horizontal-scrollable::-webkit-scrollbar{
+            width: 0;
+        }
+
+        button {
+            outline: none;
+        }
+    </style>
+</head>
+<div class="align-items-center justify-content-center">
+    @Html.NewsCarouselWithHref(news)
+
+    <div class="container horizontal-scrollable my-4">
+        @Html.NewsCreate(news)
+    </div>
+
+    <div class="container row navbar-collapse">
+        <div class="col-md-8 align-content-center">
+            <h1>Main column</h1>
+             <p>Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means, such as additional text hidden with the .visually-hidden class.</p>
+        </div>
+        <div class="col">
+            <h1>second column</h1>
+            <p>Click the button below to show an alert (hidden with inline styles to start), then dismiss (and destroy) it with the built-in close button.</p>
+        </div>
+    </div>
+</div>

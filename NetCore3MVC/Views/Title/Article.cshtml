@@ -1,0 +1,29 @@
+﻿@using NetCore3MVC.Services
+@{
+    ViewData["title"] = "Article Page";
+    Article article = ViewBag.Article;
+    User user = ViewBag.Author;
+    ViewData["controller"] = "Title";
+}
+<div class="d-flex justify-content-center p-2">
+    <div class="col-md-10">
+        <div class="modal-title bg-light">
+            <h2>@article.Title</h2>
+        </div>
+        <div class=small>
+            <div class="row">
+                <div class="col-md-5">
+                    <p>Author: @user.Firstname @user.Secondname</p>
+                </div>
+                <div class="col-md-5 align-content-end">
+                    <p>Posted: @article.CreateTimestamp</p>
+                </div>
+            </div>
+            @Html.ArticleCategories(article.Categories)
+        </div>
+
+        <div class="bg-light p-2">
+            <p>@article.Content</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+﻿@model NetCore3MVC.Models.SupportingModels.UserViewModel;
+@{
+    ViewData["Title"] = "Person Page";
+    var user = ViewBag.User; 
+    string pathImg = string.IsNullOrEmpty(@user.AvatarPath) ? "/Resources/Avatar/iconMan.png" : @user.AvatarPath;
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"] @user.Userlogin</h1>
+
+</div>
+<div>
+    <form method="post" asp-action="Save" asp-controller="Account" enctype="multipart/form-data">
+        <div class="form-group">
+            <img height="200" width="200" class="border border-success rounded-pill" src="@pathImg"/>
+            <input type="file" name="file" asp-for="file" />
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label asp-for="Id" >User Id</label>
+            </div>
+            <div class="col-md-4">
+                <input asp-for="Id" type="number" value="@user.Id" disabled />
+                <span asp-validation-for="Id"></span>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label asp-for="Firstname">First Name</label>
+            </div>
+            <div class="col-md-4">
+                <input asp-for="Firstname" value="@user.Firstname" />
+                <span asp-validation-for="Firstname" ></span>
+            </div>
+        </div>
+
+        <div class="dropdown-divider"></div>
+        
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label asp-for="Secondname">Second Name</label>
+            </div>
+            <div class="col-md-4">
+                <input asp-for="Secondname" value="@user.Secondname" />
+                <span asp-validation-for="Secondname"></span>
+            </div>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label asp-for="Gender">Gender</label>
+            </div>
+            <div class="col-md-4">
+                <input asp-for="Gender" value="@user.Gender" />
+                <span asp-validation-for="Gender"></span>
+            </div>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label asp-for="Birthday">BirthDay</label>
+            </div>
+            <div class="col-md-4">
+                <input type="date" asp-for="Birthday" value="@user.Birthday" />
+                <span asp-validation-for="Birthday"></span>
+            </div>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label asp-for="Country">Country</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" asp-for="Country" value="@user.Country" />
+                <span asp-validation-for="Country"></span>
+            </div>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="row form-group">
+            <div class="col-md-2">
+                <label asp-for="City">City</label>
+            </div>
+            <div class="col-md-4">
+                <input type="text" asp-for="City" value="@user.City" />
+                <span asp-validation-for="City"></span>
+            </div>
+        </div>
+        <input type="submit" value="Save" />
+    </form>
+</div>

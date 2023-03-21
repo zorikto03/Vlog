@@ -1,0 +1,48 @@
+﻿@model NetCore3MVC.Models.RegisterModel
+@{
+    ViewData["Title"] = "Registration Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Registration Page</h1>
+</div>
+<div>
+    <form asp-action="Register" asp-controller="Account" asp-antiforgery="true">
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
+
+        <div>
+            <div>
+                <label asp-for="Login">Enter Login</label><br />
+                <input type="text" asp-for="Login" /> <br />
+                <span asp-validation-for="Login" />
+            </div>
+            <div>
+                <label asp-for="FirstName">First Name</label><br />
+                <input asp-for="FirstName" /><br />
+                <span asp-validation-for="FirstName"></span>
+            </div>
+            <div>
+                <label asp-for="SecondName">Second Name</label><br />
+                <input asp-for="SecondName" /><br />
+                <span asp-validation-for="SecondName"></span>
+            </div>
+            
+            <div>
+                <label asp-for="Password">Enter Password</label><br />
+                <input asp-for="Password" /><br />
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div>
+                <label asp-for="ConfirmPassword">Repeat Password</label><br />
+                <input asp-for="ConfirmPassword" /><br />
+                <span asp-validation-for="ConfirmPassword" />
+            </div>
+        </div>
+        
+        <br />
+        <input type="submit" value="Sign-up" />
+    </form>
+    <div id="liveAlertPlaceholder">
+        @Html.Raw(@ViewBag.Alert)
+    </div>
+</div>

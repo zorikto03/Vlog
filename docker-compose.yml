@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  netcore3mvc:
+    image: ${DOCKER_REGISTRY-}netcore3mvc
+    build:
+      context: .
+      dockerfile: NetCore3MVC/Dockerfile
